@@ -1,23 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Train Scheduler</title>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <!-- my custom CSS file -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
+
 <body>
 
+    <div class="container">
 
+        <div class="jumbotron bg-primary text-white text-center">
+            <h1 class="display-4">Train Schedule</h1>
+        </div>
+
+        <div class="card">
+
+            <div class="card-header bg-primary text-light">
+                <h5>Current Train Schedule</h5>
+            </div>
+
+            <div class="card-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Train Name</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Frequency (min)</th>
+                            <th scope="col">Next Arrival</th>
+                            <th scope="col">Minutes Away</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>?</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <div class="card-header bg-primary text-light">
+                    <h5>Add Train</h5>
+            </div>
+    
+            <div class="card-body">
+    
+                <form>
+                    <div class="form-group">
+                        <label>Train Name</label>
+                        <input type="text" class="form-control" id="train-name" placeholder="Enter the train's name">
+                    </div>
+    
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <input type="text" class="form-control" id="train-destination" placeholder="Enter the destination">
+                    </div>
+
+                    <div class="form-group">
+                        <label>First Train Time (HH:mm - military time)</label>
+                        <input type="text" class="form-control" id="train-time" placeholder="Enter the train's first arrival time">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Frequency (min)</label>
+                        <input type="number" class="form-control" id="train-name" placeholder="Enter the train's frequency">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+    
+                </form>
+    
+            </div>
+    
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <!-- my Firebase database -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- my JS file -->
     <script type="text/javascript" src="assets/javascript/logic.js"></script>
-    
+
 </body>
+
 </html>
