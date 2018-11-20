@@ -8,7 +8,7 @@ var config = {
     projectId: "train-scheduler-79a71",
     storageBucket: "train-scheduler-79a71.appspot.com",
     messagingSenderId: "770731075832"
-};
+    };
 
 firebase.initializeApp(config);
 
@@ -23,8 +23,6 @@ var trainFrequency = "";
 // when the user clicks on the submit button...
 $("#submit-button").on("click", function(event){
 
-    
-
     // prevent the button from refreshing the page
     event.preventDefault();
 
@@ -34,46 +32,35 @@ $("#submit-button").on("click", function(event){
     firstTrainTime = $("#train-time").val().trim();
     trainFrequency = $("#train-frequency").val().trim();
 
+    // check to see there are no empty input fields, if there is at least one empty one, then alert the user
+    // and this prevents running the rest of the code without the proper input necessary to run the code
     if (trainName == "" || destination =="" || firstTrainTime == "" || trainFrequency =="") {
         alert("All fields are required. Please fill the entire form.");
 
     }
 
-    else{
-
-    // test
-    console.log(trainName);
-    console.log(destination);
-    console.log(firstTrainTime);
-    console.log(trainFrequency);
+    // if there are no empty fields, then continue and run the rest of the code and calculations
+    else {
 
     // first train time converted to military time and pushed back 1 year so it comes before the current time
     var firstTrainTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
-    console.log("the first train time is:" + firstTrainTimeConverted);
 
-    // difference between the times in minutes
+    // difference between the times in minutes (then and now)
     var timeDifference = moment().diff(moment(firstTrainTimeConverted), "minutes");
-    console.log("time difference:" + timeDifference);
 
-    // time apart between train time and current time
+    // time apart between train time and current time by finding the remainder
     var timeApart = timeDifference % trainFrequency;
-    console.log(timeApart);
 
     // how many minutes until next train
     var minutesTilNextTrain = trainFrequency - timeApart;
-    console.log("how long until next train:" + minutesTilNextTrain);
 
     // next train will arrive at this time in minutes
     var nextTrain = moment().add(minutesTilNextTrain, "minutes");
-    console.log("next train will arrive:" + nextTrain);
 
     // next train will arrive at this time in hour format and AM/PM
     var arrivalTime = moment(nextTrain).format("hh:mm A");
-    console.log("this is the final time:" + arrivalTime);
 
-
-
-    // upload the user-input values to the database
+    // upload the user-input values (after calculations) to the firebase database
     database.ref().push({
         name: trainName,
         destination: destination,
@@ -82,6 +69,7 @@ $("#submit-button").on("click", function(event){
         frequency: trainFrequency
     });
 
+    // alert the user that they have successfully added the train to the schedule
     alert("Train successfully added!");
 
     // clear the input forms for the next train to be added
@@ -90,10 +78,9 @@ $("#submit-button").on("click", function(event){
     $("#train-time").val("");
     $("#train-frequency").val("");
 
-}
+    }
 
-});
-
+    });
 
 // event to add trains to the firebase database and display them on screen
 database.ref().on("child_added", function(snapshot){
@@ -113,9 +100,6 @@ database.ref().on("child_added", function(snapshot){
     // display the new row under their respective columns
     $("#schedule-table").append(newRow);
 
-    
-
-});
-
+    });
 
 });
