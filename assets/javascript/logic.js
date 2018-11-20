@@ -23,6 +23,8 @@ var trainFrequency = "";
 // when the user clicks on the submit button...
 $("#submit-button").on("click", function(event){
 
+    
+
     // prevent the button from refreshing the page
     event.preventDefault();
 
@@ -31,6 +33,13 @@ $("#submit-button").on("click", function(event){
     destination = $("#train-destination").val().trim();
     firstTrainTime = $("#train-time").val().trim();
     trainFrequency = $("#train-frequency").val().trim();
+
+    if (trainName == "" || destination =="" || firstTrainTime == "" || trainFrequency =="") {
+        alert("All fields are required. Please fill the entire form.");
+
+    }
+
+    else{
 
     // test
     console.log(trainName);
@@ -58,8 +67,8 @@ $("#submit-button").on("click", function(event){
     var nextTrain = moment().add(minutesTilNextTrain, "minutes");
     console.log("next train will arrive:" + nextTrain);
 
-    // next train will arrive at this time in hour format
-    var arrivalTime = moment(nextTrain).format("hh:mm");
+    // next train will arrive at this time in hour format and AM/PM
+    var arrivalTime = moment(nextTrain).format("hh:mm A");
     console.log("this is the final time:" + arrivalTime);
 
 
@@ -73,11 +82,15 @@ $("#submit-button").on("click", function(event){
         frequency: trainFrequency
     });
 
+    alert("Train successfully added!");
+
     // clear the input forms for the next train to be added
     $("#train-name").val("");
     $("#train-destination").val("");
     $("#train-time").val("");
     $("#train-frequency").val("");
+
+}
 
 });
 
