@@ -8,3 +8,5 @@ Simply fill out the form on the site and select submit. The information will be 
 All the information you input will be saved in the database and can later be edited by me.
 
 All fields are required, otherwise app will not run upon selecting "submit."
+
+Check it out here: https://melher39.github.io/TrainScheduler/
